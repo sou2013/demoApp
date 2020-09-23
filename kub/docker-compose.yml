@@ -1,0 +1,43 @@
+version: "3.0"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12.4
+    ports:
+      - "5432:5432"
+    networks:
+      - demo-network
+    environment:
+      - POSTGRES_PASSWORD=test123
+    volumes:
+      - ${HOME}/postgres-data/:/var/lib/postgresql/data
+
+  cpe-backend:
+    container_name: cpe-backend
+    image: mockcpe
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+    networks:
+      - demo-network
+
+  frontend:
+    container_name: frontend
+    image: frontend-client:1.0.0
+    ports:
+      - "8010:80"
+    networks:
+      - demo-network
+    
+
+
+networks:
+  demo-network:
+    external: true
+#  default:
+#    external:
+#      name: demo-network
+
+#  demo-network:
+#    driver: bridge
