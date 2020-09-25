@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: postgres
 spec:
+  type: NodePort
   ports:
   - port: 5432
   selector:
@@ -36,9 +37,9 @@ spec:
           name: postgres
         imagePullPolicy: Never
         volumeMounts:
-        - name: postgres-persistent-storage
-          mountPath: /public/db-data
+        - name: postgresvolmnt
+          mountPath: /var/lib/postgresql/data
       volumes:
-      - name: postgres-persistent-storage
+      - name: postgresvolmnt
         persistentVolumeClaim:
           claimName: postgres-pv-claim
