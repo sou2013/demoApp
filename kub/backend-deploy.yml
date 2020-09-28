@@ -11,7 +11,7 @@ spec:
     # Port to forward to inside the pod
     targetPort: 8080
     # Port accessible outside cluster
-    #nodePort: 30002
+    nodePort: 30080
   type: NodePort
   #externalIPs:
   #- 172.17.0.2
@@ -37,7 +37,7 @@ spec:
   selector:
     matchLabels:
       app: cpe-backend   # no special char
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: 1 # tells deployment to run 1 or 2  pods matching the template
   template:
     metadata:
       labels:

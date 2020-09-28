@@ -9,7 +9,8 @@ export class ImageService {
   private usersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/scmp/terminalImages';
+    // this.usersUrl = 'http://localhost:8080/scmp/terminalImages';
+    this.usersUrl = '/terminalImages';
   }
 
   public findAll(): Observable<TerminalImage[]> {
