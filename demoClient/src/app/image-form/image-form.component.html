@@ -1,1 +1,18 @@
-<p>image-form works!</p>
+<!-- <form name="userForm" action="/addImage" method="post" -->
+  <div class="card my-5">
+    <div class="card-body">
+  
+      <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+        <div class="form-group">
+        <label for="name">Image Id</label>&nbsp;
+            <input  type="text" class="form-control" name="imageId" placeholder="Image Id" ngModel>
+            </div>
+            <div class="form-group">     
+        <label for="name">File Name</label>&nbsp;  
+            <input type="email" class="form-control" name="fileName" placeholder = "File Name" ngModel>
+            </div>
+            
+            <input type="submit" class="btn btn-info" value = "Send">
+      </form>
+  </div>
+</div>      

@@ -18,5 +18,15 @@ export class ImageService {
     return this.http.get<TerminalImage[]>(this.usersUrl);
   }
 
+  public save(terminalImage: TerminalImage) {
+    return this.http.post<TerminalImage>(this.usersUrl, terminalImage);
+  }
+
+  public createTerminalImage(terminalImage: TerminalImage) {
+    var myUrl= "/addImageSubmit" ;
+
+    return this.http.post<TerminalImage>(myUrl, terminalImage);
+  }
+
  
 }

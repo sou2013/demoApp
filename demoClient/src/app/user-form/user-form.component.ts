@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -17,10 +18,12 @@ export class UserFormComponent {
   }
 
   onSubmit() {
-    this.userService.save(this.user).subscribe(result => this.gotoUserList());
+    console.log("222");
+    this.gotoUserList();
+    //this.userService.save(this.user).subscribe(result => this.gotoUserList());
   }
 
   gotoUserList() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/success']);
   }
 }
