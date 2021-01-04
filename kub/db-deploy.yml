@@ -10,7 +10,7 @@ spec:
     app: postgres
 #  clusterIP: None
 ---
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
@@ -35,11 +35,13 @@ spec:
         ports:
         - containerPort: 5432
           name: postgres
-        imagePullPolicy: Never
+        # You may have to change to Never to avoid docker pull  
+        imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: postgresvolmnt
           mountPath: /var/lib/postgresql/data
       volumes:
       - name: postgresvolmnt
         persistentVolumeClaim:
+          # the name should match what is in db-pv.yml
           claimName: postgres-pv-claim

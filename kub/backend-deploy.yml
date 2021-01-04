@@ -6,25 +6,16 @@ spec:
 
   ports:
   - protocol: "TCP"
-    # Port accessible inside cluster
+    # Port of the service
     port: 8080
-    # Port to forward to inside the pod
+    # Port where tomcat is running
     targetPort: 8080
-    # Port accessible outside cluster
+    # Port accessible from outside of cluster.
     nodePort: 30080
+  # if you do not wish the backend endpoints accessible from outside of cluster, set it to ClusterIP instead
   type: NodePort
   #externalIPs:
   #- 172.17.0.2
-
-#  - protocol: TCP
-#  port: 50605
-#  nodePort: 8080
-#  type: LoadBalancer
-
-#  type: NodePort
-#  ports:
-#  - port: 8080
-#    targetPort: 8080
 
   selector:
     app: cpe-backend
@@ -37,7 +28,7 @@ spec:
   selector:
     matchLabels:
       app: cpe-backend   # no special char
-  replicas: 1 # tells deployment to run 1 or 2  pods matching the template
+  replicas: 2 # no. of pods to run
   template:
     metadata:
       labels:
@@ -45,7 +36,7 @@ spec:
     spec:
       containers:
       - name: cpe-backend
-        image: mockcpe
+        image: mockcpe:1.0.0
         ports:
         - containerPort: 8080
         imagePullPolicy: Never
